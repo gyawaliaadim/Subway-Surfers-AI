@@ -1,0 +1,19 @@
+[project]
+name = "subwayai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "joblib>=1.5.3",
+    "keyboard>=0.13.5",
+    "mss>=10.2.0",
+    "numpy>=2.4.6",
+    "opencv-python>=4.13.0.92",
+    "pandas>=3.0.3",
+    "pyautogui>=0.9.54",
+    "scikit-learn>=1.8.0",
+    "torch>=2.12.0",
+    "torchaudio>=2.11.0",
+    "torchvision>=0.27.0",
+]
