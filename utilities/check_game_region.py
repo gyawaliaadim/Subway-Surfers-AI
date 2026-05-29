@@ -1,50 +1,57 @@
 import cv2
 import os
+from config import game_region
+# 1. Define the crop region we want to test
 
-# 1. Put the paths to your full screenshots here
-image_paths = [
-   
-    # Add as many paths as you want
-]
+# Slicing shortcuts
+y, x, h, w = game_region['top'], game_region['left'], game_region['height'], game_region['width']
 
-# Your perfect static coordinates
-game_region = {'top': 360, 'left': 750, 'width': 340, 'height': 420}
+# 2. Automatically point to the game_regions folder relative to this script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+regions_folder = os.path.join(current_dir, "..", "dataset", "jump")
 
-# Extract values for easier cropping slices
-y = game_region['top']
-x = game_region['left']
-h = game_region['height']
-w = game_region['width']
+# Filter for files that end with image extensions
+if os.path.exists(regions_folder):
+    image_files = [f for f in os.listdir(regions_folder) if f.lower().endswith(('.png', '.jpg', '.jpeg'))]
+    image_paths = [os.path.join(regions_folder, f) for f in image_files]
+else:
+    print(f"Error: Could not find folder at {regions_folder}")
+    image_paths = []
 
-print("Starting image loop inspection...")
-print("-> Click on the image window and press ANY KEY to see the next image.")
-print("-> Press 'q' to quit the loop entirely.")
+if not image_paths:
+    print("No images found in your game_regions folder!")
+    exit()
 
+print(f"Found {len(image_paths)} images to check in black & white.")
+print("-> Click on the window and press ANY KEY to see the next frame.")
+print("-> Press 'q' to exit.")
+
+# 3. Loop through them
 for idx, path in enumerate(image_paths):
-    if not os.path.exists(path):
-        print(f"Skipping: File not found at {path}")
+    img = cv2.imread(path)
+    if img is None:
+        print(f"Could not load image: {path}")
         continue
         
-    # Read the original full-sized screenshot
-    img = cv2.imread(path)
-    
-    # Crop the image using numpy slicing: img[y:y+h, x:x+w]
+    # Crop the raw full-size screenshot
     cropped_img = img[y:y+h, x:x+w]
     
-    # Optional: Resize to 150x150 just to see exactly what the AI will ingest
-    ai_vision = cv2.resize(cropped_img, (150, 150))
+    # --- CONVERT TO BLACK AND WHITE (GRAYSCALE) ---
+    gray_cropped = cv2.cvtColor(cropped_img, cv2.COLOR_BGR2GRAY)
     
-    # Show both the raw cropped area and the downscaled version
-    cv2.imshow("Cropped Game Region", cropped_img)
-    cv2.imshow("What the AI Sees (150x150)", ai_vision)
+    # Downscale the black and white image to 150x150
+    ai_vision = cv2.resize(gray_cropped, (100,100))
     
-    print(f"Showing image [{idx + 1}/{len(image_paths)}]: {path}")
+    # Display windows
+    file_name = os.path.basename(path)
+    cv2.imshow(f"Testing Region (B&W): {file_name}", gray_cropped)
+    cv2.imshow("Downsampled B&W (150x150)", ai_vision)
     
-    # Wait for a keystroke. If 'q' is pressed, exit the loop.
     key = cv2.waitKey(0) & 0xFF
+    cv2.destroyAllWindows() # Cleans up the windows before showing the next one
+    
     if key == ord('q'):
-        print("Inspection stopped by user.")
+        print("Inspection stopped early.")
         break
 
-cv2.destroyAllWindows()
-print("Done!")
+print("All evaluations complete!")

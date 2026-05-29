@@ -3,10 +3,12 @@ import cv2
 import numpy as np
 import keyboard # To detect your game controls
 import uuid # To give images unique names
-
+from config import game_region
 # Define the region of your screen to capture (X, Y, Width, Height)
 # Adjust these coordinates to match where your game window sits!
-game_region = {"top": 100, "left": 100, "width": 400, "height": 600}
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+regions_folder = os.path.join(current_dir, "..", "dataset", "roll")
 
 def capture_and_save(action_label):
     with mss.mss() as sct:
