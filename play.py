@@ -1,3 +1,4 @@
+# ai.py
 import mss
 import cv2
 import numpy as np
@@ -50,8 +51,8 @@ class SubwaySurfersCNN(nn.Module):
 MODEL_PATH = "./models/subway_surfers_cnn.pth"
 
 # --- AGENT CALIBRATION SETTINGS ---
-CONFIDENCE_THRESHOLD = 0.98  # Requires 55% certainty to move, otherwise defaults to NOOP
-ACTION_COOLDOWN = 0.5     # Increased from 0.12 to give animations more time to settle
+CONFIDENCE_THRESHOLD = 0.9  # Requires 55% certainty to move, otherwise defaults to NOOP
+ACTION_COOLDOWN = 0.18    # Increased from 0.12 to give animations more time to settle
 
 # Action mapping index back to strings/keys
 actions_map = {0: 'up', 1: 'left', 2: 'noop', 3: 'right', 4: 'down'}
