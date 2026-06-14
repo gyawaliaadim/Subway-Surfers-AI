@@ -10,7 +10,8 @@ print("2. Click and drag a box over your Subway Surfers game window.")
 print("3. Press 'ENTER' or 'SPACE' to confirm, or 'c' to cancel.")
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-regions_folder = os.path.join(current_dir, "..", "game_regions", "endscreen.png")
+# regions_folder = os.path.join(current_dir, "..", "game_regions", "left top.png")
+regions_folder = os.path.join(current_dir, "..", "dataset", "roll", "0b36925c-838c-4529-8508-523af4a1f626.jpg")
 
 with mss.mss() as sct:
     # 1. Capture the entire primary monitor
