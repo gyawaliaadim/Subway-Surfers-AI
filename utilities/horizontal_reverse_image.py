@@ -1,3 +1,14 @@
+"""
+Dataset augmentation script for Subway Surfers AI training.
+
+Creates horizontally flipped versions of all images in the dataset to
+increase training data and improve model generalization. Horizontally directional
+actions are automatically relabeled when mirrored (left ↔ right),
+while non horizontally directional actions (jump, roll, noop) are saved into their
+corresponding reversed folders. Each generated image is assigned a
+unique filename to prevent collisions with existing data.
+"""
+
 import cv2
 import os
 import uuid

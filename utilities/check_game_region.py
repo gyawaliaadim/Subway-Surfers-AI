@@ -1,6 +1,27 @@
+
+"""
+Utility script for verifying the game capture region.
+
+Loads a test screenshot, crops it using the coordinates defined in
+`game_region`, converts the cropped area to grayscale, resizes it to
+100x100 pixels (the format used by the AI model), and displays both
+the cropped image and the final AI input image for inspection. To test if the image processing is working.
+"""
+
 import cv2
 import os
 from config import game_region
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+image_path = os.path.join(
+    BASE_DIR,
+    "..",
+    "game_regions",
+    "middle bottom.png"
+)
+
+image_path = os.path.abspath(image_path)
 
 # Crop region
 y = game_region['top']
@@ -9,14 +30,7 @@ h = game_region['height']
 w = game_region['width']
 
 # Direct image path (ONLY ONE IMAGE)
-current_dir = os.path.dirname(os.path.abspath(__file__))
-image_path = os.path.join(
-    current_dir,
-    "..",
-    "dataset",
-    "roll",
-    "20260614_135023_739372.jpg"
-)
+
 
 # Load image
 img = cv2.imread(image_path)

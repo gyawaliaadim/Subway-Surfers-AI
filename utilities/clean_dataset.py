@@ -1,3 +1,15 @@
+"""
+Image sorting tool.
+
+Displays an image and waits for a key press:
+- Space  : Delete the image
+- Left   : Move image to the left category/folder
+- Right  : Move image to the right category/folder
+- Esc    : Exit the program
+
+Used for quickly reviewing and organizing images one at a time.
+"""
+
 import os
 import cv2
 

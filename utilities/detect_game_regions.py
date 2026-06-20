@@ -1,3 +1,13 @@
+"""
+End-screen detection of subway surfers using template matching.
+
+Loads a reference image (`cropped_image.png`) and compares it against
+a specific region of a game screenshot (`endscreen.png`). The selected
+region is cropped, resized if necessary, and matched using OpenCV's
+normalized correlation template matching. If the similarity score
+exceeds the defined threshold, the script reports a successful match.
+"""
+
 import cv2
 import numpy as np
 import os

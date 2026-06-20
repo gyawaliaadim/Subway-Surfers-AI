@@ -1,3 +1,15 @@
+"""
+Interactive ROI (Region of Interest) selector for defining the game capture area.
+
+Loads a reference image and allows the user to manually draw a bounding box
+over the Subway Surfers gameplay region using OpenCV's GUI selection tool.
+The selected coordinates (top, left, width, height) are then formatted into
+a `game_region` dictionary compatible with MSS-based screen capture scripts.
+
+This is used to precisely calibrate the area of the screen that should be
+captured for dataset collection or real-time AI inference.
+"""
+
 import os
 
 import mss

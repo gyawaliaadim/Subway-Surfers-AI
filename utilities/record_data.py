@@ -1,3 +1,24 @@
+"""
+Real-time dataset recording tool for training an AI model.
+
+Continuously captures full-screen screenshots and stores them into
+action-specific folders based on keyboard input (W/A/S/D mapped to
+jump/left/roll/right). This enables structured dataset creation for
+training behavioral or game-playing models.
+
+To maintain class balance, a "noop" sample (no action state) is
+automatically recorded after every "4" user actions (as there are 4 avaiable actions W/A/S/D, recording a noop every 4 actions will make its dataset roughly equal to others),
+noop represents moments
+where no meaningful input is given.
+
+Additional controls:
+- Q → removes the most recently saved sample
+- E → removes the last three saved samples
+
+Built for rapid, hands-on data collection during active gameplay or
+simulation sessions.
+"""
+
 import os
 import time
 import threading
