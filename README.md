@@ -107,6 +107,17 @@ The bot only acts when model confidence is above **90%** — otherwise it does n
 uv sync
 ```
 
+## Important Notes
+
+- **Version of Subway Surfers I used**
+[Subway Surfers Classic](https://g2.igroutka.ru/games/164/ZXLa594fek6p7nVR/10/subway_surfers_classic/)
+- **My Screen Resolution:** 1920 × 1080  
+
+- Make sure to enable the **browser favorites/bookmarks bar** while using or testing the model.  
+  This is important because it slightly reduces the effective visible game window size.
+
+- The model was trained specifically on this adjusted screen layout.  
+  If the game is run in a different layout, resolution, or UI configuration, performance may degrade or the model may not generalize correctly.
 ---
 
 ## What I Learned
