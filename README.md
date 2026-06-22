@@ -1,6 +1,6 @@
 # 🏄 Subway Surfers AI — CNN + Imitation Learning
 
-An AI that plays Subway Surfers in real time using a custom CNN trained on my own gameplay. It watches the screen, predicts an action, and presses the keys — all at ~5 FPS.
+An AI that plays Subway Surfers in real time using a custom CNN trained on my own gameplay. It watches the screen, predicts an action, and presses the keys — all at ~15-20 FPS.
 
 > **Status:** CNN (supervised learning) ✅ &nbsp;|&nbsp; Reinforcement Learning 🔄 in progress
 
